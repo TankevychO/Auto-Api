@@ -1,0 +1,26 @@
+<html>
+<head>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script th:inline="javascript">
+        var names = /*[[${names}]]*/'noValue';
+        $(document).ready(function() {
+            $("#nameInput").autocomplete({
+                minLength : 1,
+                source : names,
+                select : function(e, ui) {
+                    document.location.href = "/models/by-manufacturer?manufacturer=" + ui.item.value;
+                    return ui.item.value;
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="ui-widget">
+    <label for="nameInput">search Manufacturer: </label><input id="nameInput" />
+</div>
+</body>
+</html>
